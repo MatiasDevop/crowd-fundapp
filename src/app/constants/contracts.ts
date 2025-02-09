@@ -1,1 +1,1 @@
-export const CROWDFUNDING_FACTORY = "";
+export const CROWDFUNDING_FACTORY = "0xEEfC511Badfe5CbFA565EA87B264B73350C4E837"; // CrowdfundingFactory address from thirdweb

@@ -3,12 +3,13 @@
 import { getContract } from "thirdweb";
 import { baseSepolia } from "thirdweb/chains";
 import { client } from "./client";
+import { CROWDFUNDING_FACTORY } from "./constants/contracts";
 
 export default function Home() {
   const contract = getContract({
     client: client,
     chain: baseSepolia,
-    address: "0x6d7f5a7f1e0a9e6b9b0a3f1f4b3b3f0d2f7b3c3",
+    address: CROWDFUNDING_FACTORY,
   });
   return (
     <main className="max-w-7xl mx-auto px-4 mt-4 sm:px-6 lg:px-8">
