@@ -7,6 +7,7 @@ import { CROWDFUNDING_FACTORY } from "./constants/contracts";
 import { useReadContract } from "thirdweb/react";
 import CampaignCard from "./components/CampaignCard";
 
+// contract address 9c66fe86d23e737f8805ec77199537b0
 export default function Home() {
   const contract = getContract({
     client: client,
