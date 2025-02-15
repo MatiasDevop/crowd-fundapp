@@ -5,6 +5,7 @@ import { baseSepolia } from "thirdweb/chains";
 import { client } from "./client";
 import { CROWDFUNDING_FACTORY } from "./constants/contracts";
 import { useReadContract } from "thirdweb/react";
+import CampaignCard from "./components/CampaignCard";
 
 export default function Home() {
   const contract = getContract({
@@ -19,7 +20,7 @@ export default function Home() {
       "function getAllCampaigns() view returns ((address campaignAddress, address owner, string name, uint256 creationTime)[])",
     params: [],
   });
-  console.log(campaigns);
+  console.log("here the campaigns....", campaigns);
 
   return (
     <main className="max-w-7xl mx-auto px-4 mt-4 sm:px-6 lg:px-8">
@@ -30,9 +31,10 @@ export default function Home() {
             campaigns &&
             (campaigns.length > 0 ? (
               campaigns.map((campaign, index) => (
-                <div key={index}>
-                  <p>Campaign</p>
-                </div>
+                <CampaignCard
+                  key={campaign.campaignAddress}
+                  campaignAddress={campaign.campaignAddress}
+                />
               ))
             ) : (
               <p>No campaigns found</p>
