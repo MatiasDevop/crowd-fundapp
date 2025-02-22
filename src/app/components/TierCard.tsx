@@ -11,9 +11,15 @@ type TierCardProps = {
   tier: Tier;
   index: number;
   contract: ThirdwebContract;
+  isEditing: boolean;
 };
 
-export default function TierCard({ tier, index, contract }: TierCardProps) {
+export default function TierCard({
+  tier,
+  index,
+  contract,
+  isEditing,
+}: TierCardProps) {
   return (
     <div className="max-w-sm flex flex-col justify-between p-6 bg-white rounded-lg shadow border border-slate-100">
       <div>
@@ -36,6 +42,7 @@ export default function TierCard({ tier, index, contract }: TierCardProps) {
               value: tier.amount,
             })
           }
+          onError={(error) => alert(error.message)}
           onTransactionConfirmed={async () => alert("Funded Successfully")}
           style={{
             marginTop: "1rem",
@@ -49,6 +56,30 @@ export default function TierCard({ tier, index, contract }: TierCardProps) {
           Select
         </TransactionButton>
       </div>
+      {isEditing && (
+        <TransactionButton
+          transaction={() =>
+            prepareContractCall({
+              contract,
+              method: "function removeTier(uint256 _index)",
+              params: [BigInt(index)],
+            })
+          }
+          onTransactionConfirmed={async () => alert("Removed successfully!")}
+          style={{
+            marginTop: "1rem",
+            backgroundColor: "red",
+            color: "white",
+            padding: "0.5rem 1rem",
+            borderRadius: "0.375rem",
+            cursor: "pointer",
+          }}
+        >
+          Remove
+        </TransactionButton>
+      )}
     </div>
   );
 }
+
+// 2:25 hrs pending make dashboard

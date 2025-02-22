@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import { getContract, prepareContractCall, ThirdwebContract } from "thirdweb";
 import { baseSepolia } from "thirdweb/chains";
 import {
+  lightTheme,
   TransactionButton,
   useActiveAccount,
   useReadContract,
@@ -151,10 +152,11 @@ export default function CampaignPage() {
                 tier={tier}
                 index={index}
                 contract={contract}
+                isEditing={isEditing}
               />
             ))
           ) : (
-            <p>No Tiers available</p>
+            !isEditing && <p>No Tiers available</p>
           )}
           {isEditing && (
             <button
@@ -222,6 +224,11 @@ const CreateTierModal = ({
                 params: [tierName, tierAmount],
               })
             }
+            onTransactionConfirmed={async () => {
+              alert("Tier added successfully");
+              setIsModalOpen(false);
+            }}
+            theme={lightTheme()}
           >
             Add tier
           </TransactionButton>
