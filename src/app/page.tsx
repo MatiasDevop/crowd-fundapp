@@ -15,6 +15,7 @@ export default function Home() {
     address: CROWDFUNDING_FACTORY,
   });
 
+  console.log("here the contract....", contract);
   const { data: campaigns, isPending } = useReadContract({
     contract,
     method:
